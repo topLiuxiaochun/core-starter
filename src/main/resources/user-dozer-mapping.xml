@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	<mapping>
+		<class-a>com.test.entity.UserPO</class-a>
+		<class-b>com.test.entity.UserVO</class-b>
+		<field>
+			<a>userId</a>
+			<b>customerId</b>
+		</field>
+		<field>
+			<a>userName</a>
+			<b>customerName</b>
+		</field>
+	</mapping>
+</mappings>
