@@ -16,7 +16,7 @@ import com.liuxc.hessian.client.service.BasicService;
 public class BasicClient {
 
 	public static void main(String[] args) throws MalformedURLException {
-		String urlName = "http://localhost:8040/HessianRPC/basic";
+		String urlName = "http://localhost:8080/core-starter/basic";
 		HessianProxyFactory proxy = new HessianProxyFactory();
 		BasicService proxyService = (BasicService) proxy.create(BasicService.class, urlName);
 

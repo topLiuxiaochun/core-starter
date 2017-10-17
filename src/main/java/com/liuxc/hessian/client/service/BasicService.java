@@ -4,7 +4,7 @@
 package com.liuxc.hessian.client.service;
 
 /**
- * 客户端服务接口
+ * 客户端服务接口必须和服务端接口保持一致
  * @author dell
  *
  */
