@@ -10,7 +10,7 @@ import com.liuxc.entity.UserPO;
 import com.liuxc.entity.UserVO;
 /**
  * 使用dozer工具实现实体bean转换。参考 http://blog.csdn.net/windrui/article/details/52116999
- * 
+ * JavaWeb中使用dozer ：http://www.importnew.com/21947.html
  * @since:2017年10月16日
  * @author:liuxc
  */
