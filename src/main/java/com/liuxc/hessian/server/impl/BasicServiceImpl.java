@@ -24,7 +24,7 @@ public class BasicServiceImpl extends HessianServlet implements BasicService {
 	}
 
 	@Override
-	public String getSum(Integer a, Integer b) {
+	public String sum(Integer a, Integer b) {
 		Integer sum = a + b;
 		return sum.toString();
 	}

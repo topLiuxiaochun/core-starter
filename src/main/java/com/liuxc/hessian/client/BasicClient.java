@@ -20,7 +20,7 @@ public class BasicClient {
 		HessianProxyFactory proxy = new HessianProxyFactory();
 		BasicService proxyService = (BasicService) proxy.create(BasicService.class, urlName);
 
-		System.out.println(proxyService.getSum(5, 9));
+		System.out.println(proxyService.sum(5, 9));
 		
 		try {
 			/**
