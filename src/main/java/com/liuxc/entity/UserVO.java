@@ -10,6 +10,16 @@ public class UserVO {
 	
 	private String sex;
 
+	public UserVO() {
+		super();
+	}
+
+	public UserVO(String customerName, String nickName) {
+		super();
+		this.customerName = customerName;
+		this.nickName = nickName;
+	}
+
 	public String getCustomerId() {
 		return customerId;
 	}

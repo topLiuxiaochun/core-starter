@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.liuxc.method;
+package com.liuxc.effective.method;
 
 import java.util.ArrayList;
 import java.util.List;
