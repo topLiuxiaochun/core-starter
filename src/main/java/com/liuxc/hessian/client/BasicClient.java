@@ -10,6 +10,8 @@ import com.liuxc.hessian.client.service.BasicService;
 
 /**
  * 客户端调用类
+ * <p>
+ * 远程调用框架Hessian客户端代码
  * @author dell
  *
  */
