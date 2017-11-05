@@ -34,15 +34,24 @@ public class Consumer {
 	private Connection conn;
 	/*session对象*/
 	private Session session;
-	
+	/*绑定消息生产者到线程上*/
 	private ThreadLocal<MessageConsumer> msgConsumerLocal = new ThreadLocal<MessageConsumer>();
 	
+	/**
+	 * 初始化session
+	 * @since:2017年11月5日
+	 * @author:liuxc
+	 */
 	public void init() {
 		try {
 			connFactory = new ActiveMQConnectionFactory(DEFAULT_USER, DEFAULT_PASSWORD, DEFAULT_BROKER_URL);
-			conn = connFactory.createConnection();
+			
+			conn = connFactory.createConnection();//创建connection对象时，传输默认是关闭状态，必须调用start方法开启
+			
 			conn.start();
+			
 			session = conn.createSession(true, Session.SESSION_TRANSACTED);
+			
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
@@ -51,7 +60,7 @@ public class Consumer {
 	public void getMessage(String message) throws JMSException, InterruptedException {
 		//根据message创建消息模式point to point
 		Queue queue = session.createQueue(message);
-		
+		/*消息消费者*/
 		MessageConsumer consumer = null;
 		
 		if(msgConsumerLocal.get() != null) {
@@ -68,7 +77,8 @@ public class Consumer {
 			
 			if(textMessage != null){
 				textMessage.acknowledge();
-				System.out.println(Thread.currentThread().getName()+":我是消费者，我正在消费Msg【"+textMessage.getText()+"】--->"+count.getAndIncrement());
+				System.out.println(Thread.currentThread().getName()+":我是消费者，"
+						+ "正在消费Message【"+textMessage.getText()+"】--->"+count.getAndIncrement());
 			} else {
 				break;
 			}

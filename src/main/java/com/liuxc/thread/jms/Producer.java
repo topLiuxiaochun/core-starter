@@ -26,32 +26,41 @@ public class Producer {
 	private static final String DEFAULT_USER = ActiveMQConnection.DEFAULT_USER;
 	private static final String DEFAULT_PASSWORD = ActiveMQConnection.DEFAULT_PASSWORD;
 	private static final String DEFAULT_BROKER_URL = ActiveMQConnection.DEFAULT_BROKER_URL;
-	
+	/*原子性计数类*/
 	private AtomicInteger count = new AtomicInteger();
-	
+	/*连接工厂*/
 	private ConnectionFactory connFactory;
-	
+	/*连接对象*/
 	private Connection conn;
-	
+	/*会话对象*/
 	private Session session;
-	
+	/*绑定消息生产者到线程上*/
 	private ThreadLocal<MessageProducer> msgProducerLocal = new ThreadLocal<MessageProducer>();
 	
+	/**
+	 * 初始化session
+	 * @since:2017年11月5日
+	 * @author:liuxc
+	 */
 	public void init() {
 		try {
 			connFactory = new ActiveMQConnectionFactory(DEFAULT_USER, DEFAULT_PASSWORD, DEFAULT_BROKER_URL);
-			conn = connFactory.createConnection();
+			
+			conn = connFactory.createConnection();//创建connection对象时，传输默认是关闭状态，必须调用start方法开启
+			
 			conn.start();
+			
 			session = conn.createSession(true, Session.SESSION_TRANSACTED);
+			
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	public void sendMessage(String message) throws JMSException, InterruptedException {
-		//根据message创建消息模式point to point
+		//根据message创建消息模式point to point，即消息队列
 		Queue queue = session.createQueue(message);
-		
+		//消息生产者
 		MessageProducer producer = null;
 		
 		if(msgProducerLocal.get() != null) {
