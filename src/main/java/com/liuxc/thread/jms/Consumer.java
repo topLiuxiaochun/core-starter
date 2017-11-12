@@ -80,6 +80,7 @@ public class Consumer {
 				System.out.println(Thread.currentThread().getName()+":我是消费者，"
 						+ "正在消费Message【"+textMessage.getText()+"】--->"+count.getAndIncrement());
 			} else {
+				System.out.println("已经没有消费可消费......");
 				break;
 			}
 			
