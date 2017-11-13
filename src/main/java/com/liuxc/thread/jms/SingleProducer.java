@@ -32,26 +32,26 @@ public class SingleProducer {
 	 */
 	public static void main(String[] args) throws JMSException {
 		// TODO Auto-generated method stub
-		//创建连接工厂
+		//1.创建连接工厂
 		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(brokerURL);
-		//创建连接
+		//2.创建连接
 		Connection connection = connectionFactory.createConnection();
-		//启动连接
+		//3.启动连接
 		connection.start();
-		//创建会话
+		//4.创建会话
 		Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-		//创建会话模式
+		//5.创建会话模式
 		Destination destination = session.createQueue(queueName);
-		//创建生产者
+		//6.创建生产者
 		MessageProducer producer = session.createProducer(destination);
-		//创建消息
+		//7.创建消息
 		for(int i=0; i<100; i++) {
 			TextMessage message = session.createTextMessage("message_" + i);
-			//发送消息
+			//8.发送消息
 			producer.send(message);
 			System.out.println(message.getText());
 		}
-		//关闭连接
+		//9.关闭连接
 		connection.close();
 	}
 
